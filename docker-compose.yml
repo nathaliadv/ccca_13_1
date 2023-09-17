@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  db_ccca:
+    image: postgres
+    container_name: db_ccca
+    restart: always
+    ports:
+      - 5432:5432
+    env_file:
+    - .env
+    volumes:
+      - pgdata:/data/postgres
+      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+volumes:
+  pgdata:
+    driver: local
